@@ -35,3 +35,7 @@ body {
         display: none;
     }
 }
+
+.navbar-nav a {
+    font-size: 3em;
+}
