@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .speech-bubble {
+            position: relative;
+            background: #00aabb;
+            border-radius: .4em;
+
+            height: auto;
+            width: 100px;
+        }
+
+            .speech-bubble:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 39px solid transparent;
+                border-bottom-color: #00aabb;
+                border-top: 0;
+                border-right: 0;
+                margin-left: -19.5px;
+                margin-top: -39px;
+            }
+
+        .triangle-isosceles {
+            position: relative;
+            padding: 15px;
+            margin: 1em 0 3em;
+            width: 100px;
+            color: #000;
+            background: #258e8e; /* default background for browsers without gradient support */
+            /* css3 */
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#85e0e0), to(#258e8e));
+            background: -moz-linear-gradient(#85e0e0, #258e8e);
+            background: -o-linear-gradient(#85e0e0,#258e8e);
+            background: linear-gradient(#85e0e0, #258e8e);
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: .4em;
+        }
+            .triangle-isosceles.top {
+                background: -webkit-gradient(linear, 0 0, 0 100%, from(#f3961c), to(#f9d835));
+                background: -moz-linear-gradient(#f3961c, #f9d835);
+                background: -o-linear-gradient(#f3961c, #f9d835);
+                background: linear-gradient(#f3961c, #f9d835);
+            }
+       
+    </style>
+</head >
+
+<body>
+
+    <div style="height: auto;width: auto">
+        <div class="w3-sidebar w3-bar-block w3-card" style="width:25%;left:0;">
+            <h3 class="w3-bar-item"> Patienter</h3>
+            <a href="#" class="w3-bar-item w3-button"> Torben Hansen</a>
+            <a href="#" class="w3-bar-item w3-button"> Ulla Nielsen</a>
+            <a href="#" class="w3-bar-item w3-button"> Sofie Andersen</a>
+        </div>
+
+        <div style="margin-left:25%">
+            <p> Torben Hansen</p>
+            <div class="speech-bubble">Det virker</div>
+            
+            <p>Terapeaut</p>
+            <div class="triangle-isosceles">Tror du selv på det?</div>
+        </div>
+    </div>
+</body>
+</html>
