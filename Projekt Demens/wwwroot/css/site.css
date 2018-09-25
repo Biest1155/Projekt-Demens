@@ -39,3 +39,9 @@ body {
 .navbar-nav a {
     font-size: 3em;
 }
+
+.navbar-header img {
+    height:auto;
+    width: 40px;
+    margin-top: -7px;
+}
