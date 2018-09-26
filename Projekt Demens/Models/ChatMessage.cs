@@ -17,5 +17,6 @@ namespace Projekt_Demens.Models
 
         //Når jeg går ind på chatsiden skal jeg bruge navnene på patienterne, ikke bare Id'et.
         //Denne information skal hentes fra en anden klasse.
+        //Patient og terapeut-navnene kan jeg lægge i ViewBag. 
     }
 }
