@@ -10,6 +10,28 @@ namespace Projekt_Demens.Controllers
 {
     public class HomeController : Controller
     {
+        public List<ChatMessage> AllMessages = new List<ChatMessage>()
+        {
+            new ChatMessage()
+            {
+                Id = 1, PatientId = 1, Content = "Jeg har fået problemer med at huske alfabetet", Posted = DateTime.Now,
+                TerapeutId = 1, TerapeutIsAuthor = false
+            },
+            new ChatMessage()
+            {
+                Id = 2, PatientId = 1, TerapeutId = 1, Content = "Har du lavet øvelserne", TerapeutIsAuthor = true, Posted = DateTime.Now
+            },
+
+            new ChatMessage()
+            {
+                Id = 3, PatientId = 1, TerapeutId = 1, Content = "Nej", TerapeutIsAuthor = false, Posted = DateTime.Now
+            },
+            new ChatMessage()
+            {
+                Id=4, PatientId = 2, TerapeutId = 1, Content = "Jeg glemte koden til Dakortet idag", TerapeutIsAuthor = false, Posted = DateTime.Now
+            }
+            
+        };
         public IActionResult Index()
         {
             return View();
