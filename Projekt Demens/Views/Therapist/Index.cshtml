@@ -1,7 +1,103 @@
-﻿
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model List<ChatMessage>
 @{
-    ViewData["Title"] = "Index";
+    Layout = "_Layout";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
 
-<h2>Index</h2>
 
+        .triangle-blue {
+            position: relative;
+            padding: 15px;
+            margin: 1em 0 3em;
+            width: 200px;
+            color: #000;
+            background: #258e8e; /* default background for browsers without gradient support */
+            /* css3 */
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#85e0e0), to(#258e8e));
+            background: -moz-linear-gradient(#85e0e0, #258e8e);
+            background: -o-linear-gradient(#85e0e0,#258e8e);
+            background: linear-gradient(#85e0e0, #258e8e);
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: .4em;
+        }
+
+        /*.triangle-isosceles.top {
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#f3961c), to(#f9d835));
+            background: -moz-linear-gradient(#f3961c, #f9d835);
+            background: -o-linear-gradient(#f3961c, #f9d835);
+            background: linear-gradient(#f3961c, #f9d835);
+        }*/
+
+        .triangle-red {
+            position: relative;
+            padding: 15px;
+            margin: 1em 0 3em;
+            width: 200px;
+            color: #000;
+            background: #cc0000; /* default background for browsers without gradient support */
+            /* css3 */
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff4d4d), to(#cc0000));
+            background: -moz-linear-gradient(#ff4d4d, #cc0000);
+            background: -o-linear-gradient(#ff4d4d,#cc0000);
+            background: linear-gradient(#ff4d4d, #cc0000);
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: .4em;
+        }
+
+        .speech {
+            margin-left: 30%;
+            width: 65%;
+            margin-bottom: 20px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="height: auto;width: auto">
+        <div class="w3-sidebar w3-bar-block w3-card" style="width:25%;left:0;">
+            <h3 class="w3-bar-item"> Patienter</h3>
+            @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
+
+        </div>
+
+
+      
+        @foreach (var p in Model)
+        {
+            <div class="speech">
+
+                @if (p.TerapeutIsAuthor == true)
+                {
+                    <div style="float: right">
+                        <div class="triangle-blue">
+                            <p>
+                                @p.Content
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div style="float: left">
+                        <div class="triangle-red">
+                            <p>@p.Content</p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+    </div>
+</body>
+</html>
