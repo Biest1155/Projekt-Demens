@@ -52,7 +52,7 @@
         }
 
         .speech {
-            margin-left: 30%;
+           
             width: 65%;
             margin-bottom: 20px;
             float: left;
@@ -62,52 +62,71 @@
 
 <body>
 
-    <div style="height: auto;width: auto">
-        <div class="w3-sidebar w3-bar-block w3-card" style="width:25%;left:0;">
-            <h3 class="w3-bar-item"> Patienter</h3>
-            @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
-            @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
-            @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
+<div style="height: auto;width: auto">
+    <div class="w3-sidebar w3-bar-block w3-card" style="width:25%;left:0;">
+        <h3 class="w3-bar-item"> Patienter</h3>
+        @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
+        @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
+        @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
 
-        </div>
+    </div>
+    <div style="margin-left:30%; height:300px">
 
-
+    
+    <div style="overflow:scroll; height:550px">
       
         @foreach (var p in Model)
         {
-            <div class="speech">
+           
+               
 
-                @if (p.TerapeutIsAuthor == true)
-                {
-                    <div style="float: right">
-                        <div class="triangle-blue">
-                            <p>
-                                @p.Content
-                            </p>
-                        </div>
-                    </div>
+            @if (p.TerapeutIsAuthor == true)
+             {
+                 <div class="speech" style="float: right">
+                     <div class="triangle-blue">
+                         <p>
+                             @p.Content
+                         </p>
+                     </div>
+                 
                   
-                    <div class="speech">
-                        Af @ViewBag.TherapistName @p.Posted
-                    </div>
-                }
-                else
-                {
-                    <div style="float: left">
-                        <div class="triangle-red">
-                            <p>@p.Content</p>
-                        </div>
-                    </div>
+                     <div class="speech" style="float:right">
+                         Af @ViewBag.TherapistName @p.Posted
+                     </div>
+                 </div>
+             }
+             else
+             {
+                 <div class="speech" style="float: left">
+                     <div class="triangle-red">
+                         <p>
+                             @p.Content
+                         </p>
+                    
+                 </div>
                   
-                    <div class="speech">
-                        Af @ViewBag.PatientName @p.Posted
-                    </div>
-                }
-                
-                
+                     <div class="speech" style="float:left">
+                         Af @ViewBag.PatientName @p.Posted
+                     </div>
+                 </div>
+             }
+           
+                   
+        }  
 
-            </div>
-        }
+                     
+           
+        
     </div>
+@using (Html.BeginForm("index", "Therapist",
+    new {id = @ViewBag.PatientId}))
+{
+    <p> @Html.TextBox("message")
+        <input type="submit" value="Send besked"/></p>
+}
+    </div>
+ 
+</div>
+
 </body>
 </html>

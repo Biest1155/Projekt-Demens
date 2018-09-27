@@ -9,7 +9,7 @@ namespace Projekt_Demens.Controllers
 {
     public class TherapistController : Controller
     {
-        public List<ChatMessage> AllMessages = new List<ChatMessage>()
+        public List<ChatMessage>AllMessages { get; set; } = new List<ChatMessage>()
         {
             new ChatMessage()
             {
@@ -48,6 +48,37 @@ namespace Projekt_Demens.Controllers
 
             ViewBag.TherapistName = "Therapist nr.1";
             ViewBag.PatientName = "Patient nr." + id.ToString();
+            ViewBag.PatientId = id;
+            return View(MessageByPatient);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int id, string message)
+        {
+            DateTime _now = DateTime.Now;
+            ChatMessage _newMessage = new ChatMessage()
+            {
+              PatientId=id,
+                Posted=_now,
+                Content=message,
+                TerapeutId=1,
+                TerapeutIsAuthor=true
+
+            };
+
+            AllMessages.Add(_newMessage);
+            List<ChatMessage> MessageByPatient = new List<ChatMessage>();
+            foreach (var i in AllMessages)
+            {
+                if (i.PatientId == id)
+                {
+                    MessageByPatient.Add(i);
+                }
+            }
+
+            ViewBag.TherapistName = "Therapist nr.1";
+            ViewBag.PatientName = "Patient nr." + id.ToString();
+            ViewBag.PatientId = id;
             return View(MessageByPatient);
         }
 
