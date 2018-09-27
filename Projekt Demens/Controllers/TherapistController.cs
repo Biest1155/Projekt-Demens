@@ -45,6 +45,9 @@ namespace Projekt_Demens.Controllers
                     MessageByPatient.Add(i);
                 }
             }
+
+            ViewBag.TherapistName = "Therapist nr.1";
+            ViewBag.PatientName = "Patient nr." + id.ToString();
             return View(MessageByPatient);
         }
 
