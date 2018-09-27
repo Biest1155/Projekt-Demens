@@ -53,7 +53,7 @@
 
         .speech {
            
-            width: 65%;
+            width: 100%;
             margin-bottom: 20px;
             float: left;
         }
@@ -63,17 +63,17 @@
 <body>
 
 <div style="height: auto;width: auto">
-    <div class="w3-sidebar w3-bar-block w3-card" style="width:25%;left:0;">
+    <div class="w3-sidebar w3-bar-block w3-card" style="width:20%;left:0;">
         <h3 class="w3-bar-item"> Patienter</h3>
         @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
         @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
         @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
 
     </div>
-    <div style="margin-left:30%; height:300px">
+    <div style="margin-left:25%;width: 75%;overflow:scroll; height:600px">
 
     
-    <div style="overflow:scroll; height:550px">
+  
       
         @foreach (var p in Model)
         {
@@ -83,14 +83,14 @@
             @if (p.TerapeutIsAuthor == true)
              {
                  <div class="speech" style="float: right">
-                     <div class="triangle-blue">
+                     <div class="triangle-blue" style="float: right">
                          <p>
                              @p.Content
                          </p>
                      </div>
                  
                   
-                     <div class="speech" style="float:right">
+                     <div class="speech" style="text-align: right">
                          Af @ViewBag.TherapistName @p.Posted
                      </div>
                  </div>
@@ -103,7 +103,7 @@
                              @p.Content
                          </p>
                     
-                 </div>
+                     </div>
                   
                      <div class="speech" style="float:left">
                          Af @ViewBag.PatientName @p.Posted
@@ -118,6 +118,7 @@
            
         
     </div>
+    <div style="margin-left:30%;width: 70%">
 @using (Html.BeginForm("index", "Therapist",
     new {id = @ViewBag.PatientId}))
 {
@@ -125,8 +126,9 @@
         <input type="submit" value="Send besked"/></p>
 }
     </div>
+    </div>
  
-</div>
+
 
 </body>
 </html>
