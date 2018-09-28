@@ -35,6 +35,24 @@ namespace Projekt_Demens.Controllers
             }
 
         };
+
+        public List<News> AllNews { get; set; } = new List<News>()
+        {
+            new News()
+            {
+                Id = 1, HeadLine = "I høring: National klinisk retningslinje for demens og medicinprioritering", Posted = new DateTime(2018,09,06)
+
+            },
+            new News()
+            {
+                Id = 2, HeadLine = "Alzheimer-forskningsfondens priser 2018", Posted = new DateTime(2018,09,06)
+            },
+            new News()
+            {
+                Id = 3, HeadLine = "Ny e-learning om demens til plejepersonale på hospital", Posted = new DateTime(2018,09,04)
+            }
+
+        };
         public IActionResult Index(int id=1)
         {
             List<ChatMessage> MessageByPatient = new List<ChatMessage>();
@@ -79,12 +97,13 @@ namespace Projekt_Demens.Controllers
             ViewBag.TherapistName = "Therapist nr.1";
             ViewBag.PatientName = "Patient nr." + id.ToString();
             ViewBag.PatientId = id;
+
             return View(MessageByPatient);
         }
 
         public IActionResult News()
         {
-            return View();
+            return View(AllNews);
         }
     }
 }

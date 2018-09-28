@@ -1,0 +1,88 @@
+﻿
+@model List<News>
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+        .edit {
+            float: left;
+            padding-right: 10px;
+            border-right-width: medium;
+            border-right:black;
+            color:black;
+            
+        }
+        .delete {
+            color: red;
+            font: bold;
+            float: left;
+            padding-right: 10px;
+            border-right: black;
+            border-right-width: medium;
+        }
+        .link {
+            background-color:green;
+            color: white;
+            padding: 1em 1.5em;
+            text-decoration: none;
+           
+        }
+
+            .link:hover {
+                cursor: pointer;
+            }
+
+      
+ </style>       
+    
+</head>
+
+<body>
+
+    @Html.ActionLink("Tilføj nyhed", "AddNews", "Therapist", new { @class="link"})
+
+
+@foreach (var a in Model)
+{
+    <div style="border-style:solid;width: 80%; margin-top: 30px;height: 80px; padding-left:15px">
+
+        <h4 style="width: 90%; text-align: left;font:bold">
+            @a.HeadLine
+        </h4>
+        <ul style="list-style-type: none">
+            <li>
+                @Html.ActionLink("Rediger", "Therapist", "EditNews", new{id=@a.Id}, new {@class="edit"})
+            </li>
+            <li>
+                @Html.ActionLink("Slet", "Delete", "Therapist", new{id=@a.Id}, new { @class = "delete" })
+            </li>
+            <li style="float: left">
+                @a.Posted.ToString("dd. MMMM yyyy")
+            
+            </li>
+
+        </ul>
+    </div>
+}
+
+
+</body>
+
+</html>
