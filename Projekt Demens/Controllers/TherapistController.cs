@@ -9,7 +9,7 @@ namespace Projekt_Demens.Controllers
 {
     public class TherapistController : Controller
     {
-        public List<ChatMessage> AllMessages = new List<ChatMessage>()
+        public List<ChatMessage>AllMessages { get; set; } = new List<ChatMessage>()
         {
             new ChatMessage()
             {
@@ -35,6 +35,24 @@ namespace Projekt_Demens.Controllers
             }
 
         };
+
+        public List<News> AllNews { get; set; } = new List<News>()
+        {
+            new News()
+            {
+                Id = 1, HeadLine = "I høring: National klinisk retningslinje for demens og medicinprioritering", Posted = new DateTime(2018,09,06)
+
+            },
+            new News()
+            {
+                Id = 2, HeadLine = "Alzheimer-forskningsfondens priser 2018", Posted = new DateTime(2018,09,06)
+            },
+            new News()
+            {
+                Id = 3, HeadLine = "Ny e-learning om demens til plejepersonale på hospital", Posted = new DateTime(2018,09,04)
+            }
+
+        };
         public IActionResult Index(int id=1)
         {
             List<ChatMessage> MessageByPatient = new List<ChatMessage>();
@@ -45,12 +63,47 @@ namespace Projekt_Demens.Controllers
                     MessageByPatient.Add(i);
                 }
             }
+
+            ViewBag.TherapistName = "Therapist nr.1";
+            ViewBag.PatientName = "Patient nr." + id.ToString();
+            ViewBag.PatientId = id;
+            return View(MessageByPatient);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int id, string message)
+        {
+            DateTime _now = DateTime.Now;
+            ChatMessage _newMessage = new ChatMessage()
+            {
+              PatientId=id,
+                Posted=_now,
+                Content=message,
+                TerapeutId=1,
+                TerapeutIsAuthor=true
+
+            };
+
+            AllMessages.Add(_newMessage);
+            List<ChatMessage> MessageByPatient = new List<ChatMessage>();
+            foreach (var i in AllMessages)
+            {
+                if (i.PatientId == id)
+                {
+                    MessageByPatient.Add(i);
+                }
+            }
+
+            ViewBag.TherapistName = "Therapist nr.1";
+            ViewBag.PatientName = "Patient nr." + id.ToString();
+            ViewBag.PatientId = id;
+
             return View(MessageByPatient);
         }
 
         public IActionResult News()
         {
-            return View();
+            return View(AllNews);
         }
     }
 }
