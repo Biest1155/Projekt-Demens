@@ -21,22 +21,7 @@
             cursor: pointer;
             border-radius: 12px;
         }
-        .edit {
-            float: left;
-            padding-right: 10px;
-            border-right-width: medium;
-            border-right:black;
-            color:black;
-            
-        }
-        .delete {
-            color: red;
-            font: bold;
-            float: left;
-            padding-right: 10px;
-            border-right: black;
-            border-right-width: medium;
-        }
+       
         .link {
             background-color:green;
             color: white;
@@ -85,25 +70,7 @@
 
 @foreach (var a in Model)
 {
-    <div style="border-style:solid;width: 80%; margin-top: 30px;height: 80px; padding-left:15px">
-
-        <h4 style="width: 90%; text-align: left;font:bold">
-            @a.HeadLine
-        </h4>
-        <ul style="list-style-type: none">
-            <li>
-                @Html.ActionLink("Rediger", "EditNews", "Therapist", new{id=@a.Id}, new {@class="edit"})
-            </li>
-            <li>
-                @Html.ActionLink("Slet", "Delete", "Therapist", new{id=@a.Id}, new { @class = "delete" })
-            </li>
-            <li style="float: left">
-                @a.Posted.ToString("dd. MMMM yyyy")
-            
-            </li>
-
-        </ul>
-    </div>
+    @Html.Partial("_News", a)
 }
 
 

@@ -93,6 +93,9 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult News()
         {
+            if (_db.News.Count()>0)
+                return PartialView(_db.News.ToArray());
+
             return View(_db.News.ToArray());
         }
 

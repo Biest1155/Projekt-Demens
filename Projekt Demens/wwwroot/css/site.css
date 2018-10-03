@@ -50,3 +50,20 @@ textarea {
     width: 500px;
     height: 150px;
 }
+
+.edit {
+    float: left;
+    padding-right: 10px;
+    border-right-width: medium;
+    border-right:black;
+    color:black;
+            
+}
+.delete {
+    color: red;
+    font: bold;
+    float: left;
+    padding-right: 10px;
+    border-right: black;
+    border-right-width: medium;
+}
