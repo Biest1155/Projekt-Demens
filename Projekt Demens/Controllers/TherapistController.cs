@@ -125,10 +125,55 @@ namespace Projekt_Demens.Controllers
             return View(tips);
         }
 
+        [HttpGet]
+        public IActionResult CreateTip()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateTip(Tip tip)
+        {
+            _db.Tips.Add(tip);
+            _db.SaveChanges();
+
+            return RedirectToAction("Tips");
+        }
+
+        [HttpGet, Route("Therapist/EditTip/{id}")]
         public IActionResult EditTip(int id)
         {
             var tip = _db.Tips.FirstOrDefault(x => x.Id == id);
             return View(tip);
+        }
+
+        [HttpPost("Therapist/EditTip/{id}")]
+        public IActionResult EditTip(long id, Tip tip)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            var originalTip = _db.Tips.FirstOrDefault(x => x.Id == id);
+            if(originalTip==null)
+            {
+                return NotFound();
+            }
+            originalTip.Title = tip.Title;
+            originalTip.Body = tip.Body;
+            originalTip.Type = tip.Type;
+            _db.Update(originalTip);
+            _db.SaveChanges();
+
+            return RedirectToAction("Tips");
+        }
+
+        public IActionResult DeleteTip(long id)
+        {
+            var tip = _db.Tips.FirstOrDefault(x => x.Id == id);
+            _db.Remove(tip);
+            _db.SaveChanges();
+            return RedirectToAction("Tips");
         }
 
         public IActionResult NewsTestData()
