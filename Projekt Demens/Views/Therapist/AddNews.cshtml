@@ -18,15 +18,21 @@
 
         <div asp-validation-summary="ModelOnly" class="input-validation-error"></div>
 
-        <p>
-            <label asp-for="HeadLine"></label>
-            <input asp-for="HeadLine" class="form-control" placeholder="Indtast overskriften her" />
+        <p style="font:bold">
+            Overskrift
+            <input asp-for="HeadLine" class="form-control" placeholder="Indtast overskriften her"/>
             <span asp-validation-for="HeadLine"></span>
+        </p>
+        
+        <p style="font:bold">
+            Indhold
+            <input asp-for="Body" class="form-control" placeholder="Skriv indholdet her"/>
+            <span asp-validation-for="Body"></span>
         </p>
 
         
 
-        <p>
+        <p >
             <button type="submit">Gem nyhed </button>
         </p>
 
