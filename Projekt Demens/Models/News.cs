@@ -16,6 +16,9 @@ namespace Projekt_Demens.Models
         [StringLength(80, MinimumLength = 3, ErrorMessage = "Må max være 100 tegn og min. 3 ")]
         public string HeadLine { get; set; }
         public DateTime Posted { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        public string Body { get; set; }
 
     }
 }
