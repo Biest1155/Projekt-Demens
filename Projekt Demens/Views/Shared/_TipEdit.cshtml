@@ -6,12 +6,12 @@
 <article class="tip">
     <h2>@Model.Title</h2>
     <div class="tip-content">
-        @Model.Body
+        @Model.Body.Substring(0,150) ...
     </div>
     <div class="tip-edit">
         @Html.ActionLink("Edit", "EditTip", "Therapist", new { Model.Id })
         &brvbar;
-        @Html.ActionLink("Delete", "DeleteTip", "Therapist", Model.Id)
+        @Html.ActionLink("Delete", "DeleteTip", "Therapist", new { Model.Id })
     </div>
 </article>
 
