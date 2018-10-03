@@ -28,6 +28,10 @@
         <select asp-for="Type" asp-items="@Html.GetEnumSelectList<Projekt_Demens.Models.Tip.TipType>()"></select>
         @Html.ValidationMessageFor(x => x.Title)
         </>
+    </p>
 
+    <p>
+        <button type="submit">Gem ændringer</button>
+    </p>
 </form>
 
