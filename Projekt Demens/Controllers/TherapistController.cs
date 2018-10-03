@@ -163,14 +163,18 @@ namespace Projekt_Demens.Controllers
         {
             var _news = _db.News.FirstOrDefault(a => a.Id == id);
             
-            return View("EditNewsNews", _news);
+            return View("EditNews", _news);
 
         }
 
         [HttpPost]
         public IActionResult EditNews(News news)
         {
-            return View();
+            var _news = _db.News.FirstOrDefault(a => a.Id == news.Id);
+            _news.HeadLine = news.HeadLine;
+            _news.Body = news.Body;
+            _db.SaveChanges();
+            return RedirectToAction("News");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Projekt_Demens.Models
         public string HeadLine { get; set; }
         public DateTime Posted { get; set; }
         [Required]
-        [DataType(DataType.Text)]
+        [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
     }

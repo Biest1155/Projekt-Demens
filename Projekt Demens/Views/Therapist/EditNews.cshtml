@@ -5,11 +5,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <style>
+        .headline-textarea
+        {
+            width: 70%;
+        }
+        .body-textarea
+        {
+            width:70%;
+            height: 160px;
+            overflow:scroll;
+            
+        }
+    </style>
 </head>
 
 <body>
 
+<form asp-action="EditNews" asp-controller="Therapist">
+    @Html.ValidationSummary()
+    <h5>
+        Overskrift
+    </h5>
+    <p>
+        @Html.EditorFor(x=>x.HeadLine, new{ htmlAttributes =new {@class="headline-textarea"}}) 
+        @Html.ValidationMessageFor(x => x.HeadLine)
+    </p>
+    <h5>
+        Indhold
+    </h5>
+    <p>
 
+
+        @Html.EditorFor(x => x.Body, new { htmlAttributes = new { @class = "body-textarea" } })
+        @Html.ValidationMessageFor(x => x.Body)
+
+    </p>
+    
+    <p >
+        <button type="submit">Gem nyhed</button>
+    </p>
+
+</form>
 </body>
 </html>
