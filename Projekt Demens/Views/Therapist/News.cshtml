@@ -90,7 +90,7 @@
         </h4>
         <ul style="list-style-type: none">
             <li>
-                @Html.ActionLink("Rediger", "Therapist", "EditNews", new{id=@a.Id}, new {@class="edit"})
+                @Html.ActionLink("Rediger", "EditNews", "Therapist", new{id=@a.Id}, new {@class="edit"})
             </li>
             <li>
                 @Html.ActionLink("Slet", "Delete", "Therapist", new{id=@a.Id}, new { @class = "delete" })

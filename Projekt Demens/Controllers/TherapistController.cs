@@ -195,5 +195,27 @@ namespace Projekt_Demens.Controllers
             return RedirectToAction("News");
 
         }
+
+        public IActionResult Delete(long id)
+        {
+            _db.Remove(_db.News.Single(a => a.Id == id));
+            _db.SaveChanges();
+            return RedirectToAction("News");
+        }
+
+        [HttpGet]
+        public IActionResult EditNews(long id)
+        {
+            var _news = _db.News.FirstOrDefault(a => a.Id == id);
+            
+            return View("EditNewsNews", _news);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditNews(News news)
+        {
+            return View();
+        }
     }
 }
