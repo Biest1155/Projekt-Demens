@@ -34,13 +34,13 @@ namespace Projekt_Demens
             });
             services.AddDbContext<TipDataContext>(options =>
             {
-                var connectionString = Configuration.GetConnectionString("TipDataContext");
+                var connectionString = Configuration.GetConnectionString("DataContext");
                 options.UseSqlServer(connectionString);
             });
 
             services.AddDbContext<NewsDataContext>(options =>
                 {
-                    var connectionString = Configuration.GetConnectionString("NewsDataContext");
+                    var connectionString = Configuration.GetConnectionString("DataContext");
                     options.UseSqlServer(connectionString);
                 }
             );
