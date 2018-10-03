@@ -45,3 +45,8 @@ body {
     width: 40px;
     margin-top: -7px;
 }
+
+textarea {
+    width: 500px;
+    height: 150px;
+}

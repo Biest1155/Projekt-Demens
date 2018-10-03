@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Projekt_Demens.Models.Tip>
+@{
+    ViewData["Title"] = "Tips";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Tips</h1>
+
+<div class="tips">
+    @foreach (var tip in Model)
+    {
+        @Html.Partial("_TipEdit", tip)
+    }
+</div>
+

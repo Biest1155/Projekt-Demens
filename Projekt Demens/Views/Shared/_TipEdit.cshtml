@@ -1,0 +1,17 @@
+﻿@model Projekt_Demens.Models.Tip
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<article class="tip">
+    <h2>@Model.Title</h2>
+    <div class="tip-content">
+        @Model.Body
+    </div>
+    <div class="tip-edit">
+        @Html.ActionLink("Edit", "EditTip", "Therapist", new { Model.Id })
+        &brvbar;
+        @Html.ActionLink("Delete", "DeleteTip", "Therapist", Model.Id)
+    </div>
+</article>
+

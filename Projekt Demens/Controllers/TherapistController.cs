@@ -9,6 +9,12 @@ namespace Projekt_Demens.Controllers
 {
     public class TherapistController : Controller
     {
+        private readonly TipDataContext _tipDb;
+
+        public TherapistController(TipDataContext db)
+        {
+            _tipDb = db;
+        }
         public List<ChatMessage>AllMessages { get; set; } = new List<ChatMessage>()
         {
             new ChatMessage()
@@ -104,6 +110,19 @@ namespace Projekt_Demens.Controllers
         public IActionResult News()
         {
             return View(AllNews);
+        }
+
+        public IActionResult Tips()
+        {
+            var tips = _tipDb.GetPatientTips();
+            tips.AddRange(_tipDb.GetRelativeTips());
+            return View(tips);
+        }
+
+        public IActionResult EditTip(int id)
+        {
+            var tip = _tipDb.Tips.FirstOrDefault(x => x.Id == id);
+            return View(tip);
         }
     }
 }

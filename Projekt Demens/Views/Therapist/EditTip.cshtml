@@ -1,0 +1,33 @@
+﻿@model Projekt_Demens.Models.Tip
+@{
+    ViewData["Title"] = "EditTip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rediger tip</h2>
+
+<form asp-action="EditTip" asp-controller="Therapist">
+    @Html.ValidationSummary()
+    <p>
+        @Html.LabelFor(x => x.Title)
+        <br/>
+        @Html.EditorFor(x => x.Title)
+        @Html.ValidationMessageFor(x => x.Title)
+    </p>
+
+    <p>
+        @Html.LabelFor(x => x.Body)
+        <br/>
+        @Html.EditorFor(x => x.Body)
+        @Html.ValidationMessageFor(x => x.Body)
+    </p>
+
+    <p>
+        @Html.LabelFor(x => x.Type)
+        <br/>
+        <select asp-for="Type" asp-items="@Html.GetEnumSelectList<Projekt_Demens.Models.Tip.TipType>()"></select>
+        @Html.ValidationMessageFor(x => x.Title)
+        </>
+
+</form>
+
