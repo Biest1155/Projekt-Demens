@@ -9,15 +9,9 @@ namespace Projekt_Demens.Controllers
 {
     public class TherapistController : Controller
     {
-        private readonly TipDataContext _tipDb;
+        private readonly DataContext _db;
 
-        public TherapistController(TipDataContext db)
-        {
-            _tipDb = db;
-        }
-        private readonly NewsDataContext _db;
-
-        public TherapistController(NewsDataContext db)
+        public TherapistController(DataContext db)
         {
             _db = db;
         }
@@ -126,15 +120,35 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult Tips()
         {
-            var tips = _tipDb.GetPatientTips();
-            tips.AddRange(_tipDb.GetRelativeTips());
+            var tips = _db.GetPatientTips();
+            tips.AddRange(_db.GetRelativeTips());
             return View(tips);
         }
 
         public IActionResult EditTip(int id)
         {
-            var tip = _tipDb.Tips.FirstOrDefault(x => x.Id == id);
+            var tip = _db.Tips.FirstOrDefault(x => x.Id == id);
             return View(tip);
+        }
+
+        public IActionResult NewsTestData()
+        {
+            var news = new News
+            {
+                HeadLine = "Article 1",
+                Posted = DateTime.Now
+            };
+            _db.Add(news);
+            news = new News
+            {
+                HeadLine = "Article 2",
+                Posted = DateTime.Now
+            };
+            _db.Add(news);
+            _db.SaveChanges();
+
+            return RedirectToAction("News");
+
         }
     }
 }

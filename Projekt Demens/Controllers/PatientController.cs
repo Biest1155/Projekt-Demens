@@ -9,9 +9,9 @@ namespace Projekt_Demens.Controllers
 {
     public class PatientController : Controller
     {
-        private readonly TipDataContext _db;
+        private readonly DataContext _db;
 
-        public PatientController(TipDataContext db)
+        public PatientController(DataContext db)
         {
             _db = db;
         }

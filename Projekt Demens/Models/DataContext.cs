@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Projekt_Demens.Models
 {
-    public class TipDataContext : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Tip> Tips { get; set; }
+        public DbSet<News> News { get; set; }
 
-        public TipDataContext(DbContextOptions<TipDataContext> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
             Database.EnsureCreated();
+            
         }
 
         public List<Tip> GetPatientTips()

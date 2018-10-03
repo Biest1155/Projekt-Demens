@@ -32,7 +32,7 @@ namespace Projekt_Demens
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddDbContext<TipDataContext>(options =>
+            services.AddDbContext<DataContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("DataContext");
                 options.UseSqlServer(connectionString);
