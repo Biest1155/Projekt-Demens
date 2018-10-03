@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<h1>Create Blog Post</h1>
+<h1>Tilføj nyhed</h1>
 
 <fieldset>
 
@@ -20,13 +20,15 @@
 
         <p style="font:bold">
             Overskrift
-            <input asp-for="HeadLine" class="form-control" placeholder="Indtast overskriften her"/>
+            <input style="width: 70%" asp-for="HeadLine" class="form-control" placeholder="Indtast overskriften her"/>
             <span asp-validation-for="HeadLine"></span>
         </p>
+        <br/>
         
         <p style="font:bold">
             Indhold
-            <input asp-for="Body" class="form-control" placeholder="Skriv indholdet her"/>
+            <textarea style="height: 160px;width: 70%" asp-for="Body" class="form-control" placeholder="Skriv indholdet her"></textarea>
+
             <span asp-validation-for="Body"></span>
         </p>
 
