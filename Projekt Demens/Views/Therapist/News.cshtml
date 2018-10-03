@@ -1,5 +1,5 @@
 ﻿
-@model List<News>
+@model IEnumerable<Projekt_Demens.Models.News>
 @{
     Layout = "_Layout";
 }
@@ -8,7 +8,7 @@
 <html>
 <head>
     <style>
-        .button {
+        a.button {
             background-color: #4CAF50; /* Green */
             border: none;
             color: white;
@@ -49,14 +49,36 @@
                 cursor: pointer;
             }
 
-      
+        .btn {
+            border: none;
+            background-color: inherit;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Green */
+        .success {
+            color: green;
+        }
+
+            .success:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .Klassernevirkerikke
+            {
+                Color:aquamarine;
+            }
  </style>       
     
 </head>
 
 <body>
 
-    @Html.ActionLink("Tilføj nyhed", "AddNews", "Therapist", new { @class="link"})
+   @Html.ActionLink("Tilføj nyhed", "AddNews", "Therapist", new { @class="Klassernevirkerikke"})
 
 
 @foreach (var a in Model)

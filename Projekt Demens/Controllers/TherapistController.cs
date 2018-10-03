@@ -15,6 +15,12 @@ namespace Projekt_Demens.Controllers
         {
             _tipDb = db;
         }
+        private readonly NewsDataContext _db;
+
+        public TherapistController(NewsDataContext db)
+        {
+            _db = db;
+        }
         public List<ChatMessage>AllMessages { get; set; } = new List<ChatMessage>()
         {
             new ChatMessage()
@@ -42,23 +48,7 @@ namespace Projekt_Demens.Controllers
 
         };
 
-        public List<News> AllNews { get; set; } = new List<News>()
-        {
-            new News()
-            {
-                Id = 1, HeadLine = "I høring: National klinisk retningslinje for demens og medicinprioritering", Posted = new DateTime(2018,09,06)
-
-            },
-            new News()
-            {
-                Id = 2, HeadLine = "Alzheimer-forskningsfondens priser 2018", Posted = new DateTime(2018,09,06)
-            },
-            new News()
-            {
-                Id = 3, HeadLine = "Ny e-learning om demens til plejepersonale på hospital", Posted = new DateTime(2018,09,04)
-            }
-
-        };
+        
         public IActionResult Index(int id=1)
         {
             List<ChatMessage> MessageByPatient = new List<ChatMessage>();
@@ -109,7 +99,29 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult News()
         {
-            return View(AllNews);
+            return View(_db.News.ToArray());
+        }
+
+        [HttpGet]
+        public IActionResult AddNews()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNews(News _news)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+
+            }
+            _news.Posted=DateTime.Now;
+            _db.Add(_news);
+            _db.SaveChanges();
+           
+           
+            return RedirectToAction("News", "Therapist");
         }
 
         public IActionResult Tips()
