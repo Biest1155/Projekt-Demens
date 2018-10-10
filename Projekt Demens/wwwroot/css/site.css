@@ -93,3 +93,77 @@ a.button {
 ul.news-list {
     list-style-type: none;
 }
+
+.triangle-blue {
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    width: 200px;
+    color: #000;
+    background: #258e8e; /* default background for browsers without gradient support */
+    /* css3 */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#85e0e0), to(#258e8e));
+    background: -moz-linear-gradient(#85e0e0, #258e8e);
+    background: -o-linear-gradient(#85e0e0,#258e8e);
+    background: linear-gradient(#85e0e0, #258e8e);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: .4em;
+}
+
+.triangle-red {
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    width: 200px;
+    color: #000;
+    background: #cc0000; /* default background for browsers without gradient support */
+    /* css3 */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff4d4d), to(#cc0000));
+    background: -moz-linear-gradient(#ff4d4d, #cc0000);
+    background: -o-linear-gradient(#ff4d4d,#cc0000);
+    background: linear-gradient(#ff4d4d, #cc0000);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: .4em;
+}
+
+.speech {
+    width: 100%;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.chat-sidebar {
+    height: 100%;
+    width: 20%;
+    left: 0;
+    background-color: #fff;
+    position:fixed;
+    z-index:1;
+    overflow:auto;
+}
+
+.chat-messages {
+    margin-left: 25%;
+    width: 75%;
+    overflow: scroll;
+    height: 600px
+}
+
+.chat-sent {
+    float:right;
+}
+
+.chat-received {
+    float:left;
+}
+
+.align-right {
+    text-align:right;
+}
+
+.chat-send-box {
+    margin-left: 30%;
+    width: 70%;
+}
