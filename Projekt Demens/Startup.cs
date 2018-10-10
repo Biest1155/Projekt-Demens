@@ -38,13 +38,6 @@ namespace Projekt_Demens
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddDbContext<NewsDataContext>(options =>
-                {
-                    var connectionString = Configuration.GetConnectionString("DataContext");
-                    options.UseSqlServer(connectionString);
-                }
-            );
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
