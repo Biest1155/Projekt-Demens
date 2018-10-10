@@ -10,6 +10,7 @@ namespace Projekt_Demens.Models
     {
         public DbSet<Tip> Tips { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<ChatMessage> Messages { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -26,6 +27,11 @@ namespace Projekt_Demens.Models
         public List<Tip> GetRelativeTips()
         {
             return Tips.Where(x => x.Type == Tip.TipType.relative).ToList();
+        }
+
+        public List<ChatMessage> GetMessagesByTherapist(long user, long patient)
+        {
+            return Messages.Where(x => x.TerapeutId == user && x.PatientId == patient).OrderBy(x=>x.Id).ToList();
         }
     }
 }
