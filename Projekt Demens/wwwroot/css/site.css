@@ -8,8 +8,8 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 /* Carousel */
@@ -166,4 +166,22 @@ ul.news-list {
 .chat-send-box {
     margin-left: 30%;
     width: 70%;
+}
+
+.stat {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    border-color: black;
+    float:left;
+    width: 100%;
+    margin: 5px auto 5px auto;
+}
+
+.stat .percent {
+    margin-top: 0px;
+    width: 75px;
+}
+
+.float {
+    float:left;
 }
