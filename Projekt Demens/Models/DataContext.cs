@@ -10,6 +10,8 @@ namespace Projekt_Demens.Models
     {
         public DbSet<Tip> Tips { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Stat> Stats { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
