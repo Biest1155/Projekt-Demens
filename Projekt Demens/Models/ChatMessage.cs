@@ -7,10 +7,10 @@ namespace Projekt_Demens.Models
 {
     public class ChatMessage
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public bool TerapeutIsAuthor { get; set; }
-        public int TerapeutId { get; set; }
-        public int PatientId { get; set; }
+        public long TerapeutId { get; set; }
+        public long PatientId { get; set; }
         public string Content { get; set; }
         public DateTime Posted { get; set; }
        
