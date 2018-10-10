@@ -23,7 +23,8 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult Tips()
         {
-            return View();
+            var tips = _db.GetRelativeTips();
+            return View(tips);
         }
 
         public IActionResult Contact()
