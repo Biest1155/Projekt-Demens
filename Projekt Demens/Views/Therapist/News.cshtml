@@ -19,7 +19,7 @@
 
 @foreach (var a in Model)
 {
-    @Html.Partial("_News", a)
+    @await Html.PartialAsync("_News", a)
 }
 
 

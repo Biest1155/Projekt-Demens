@@ -9,7 +9,7 @@
 <div class="tips">
     @foreach (var tip in Model)
     {
-        @Html.Partial("_TipEdit", tip)
+        @await Html.PartialAsync("_TipEdit", tip)
     }
 </div>
 
