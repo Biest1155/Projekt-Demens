@@ -1,19 +1,19 @@
 ﻿@model Projekt_Demens.Models.News
 
-<div style="border-style:solid;width: 80%; margin-top: 30px;height: 80px; padding-left:15px">
+<div class="news-container">
 
     <h4 style="width: 90%; text-align: left;font:bold">
-        Model.HeadLine
+        @Model.HeadLine
     </h4>
-    <ul style="list-style-type: none">
+    <ul class="news-list">
         <li>
             @Html.ActionLink("Rediger", "EditNews", "Therapist", new{id=Model.Id}, new {@class="edit"})
         </li>
         <li>
             @Html.ActionLink("Slet", "Delete", "Therapist", new{id=Model.Id}, new { @class = "delete" })
         </li>
-        <li style="float: left">
-            Model.Posted.ToString("dd. MMMM yyyy")
+        <li >
+            @Model.Posted.ToString("dd. MMMM yyyy")
             
         </li>
 
