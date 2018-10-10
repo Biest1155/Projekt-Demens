@@ -178,6 +178,7 @@ ul.news-list {
 }
 
 .stat .percent {
+    padding-left:10px;
     margin-top: 0px;
     width: 75px;
 }
