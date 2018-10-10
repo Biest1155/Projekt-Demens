@@ -1,4 +1,5 @@
 ﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@*@inject Projekt_Demens.Models.FormattingService Format*@
 @model List<ChatMessage>
 @{
     Layout = "_Layout";
@@ -6,43 +7,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 
 <body>
     <div>
-        <div class="w3-bar-block w3-card chat-sidebar" >
+        <div class="w3-bar-block w3-card chat-sidebar">
             <h3 class="w3-bar-item"> Patienter</h3>
             @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
             @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
             @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
         </div>
-        <div class="chat-messages" >
+        <div class="chat-messages">
             @foreach (var p in Model)
             {
                 @if (p.TerapeutIsAuthor == true)
                 {
-                    <div class="speech " >
-                        <div class="triangle-blue chat-sent" >
+                    <div class="speech ">
+                        <div class="triangle-blue chat-sent">
                             <p>
                                 @p.Content
                             </p>
                         </div>
                         <div class="speech align-right">
-                            Af @ViewBag.TherapistName @p.Posted
+                             @ViewBag.TherapistName @*@Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)*@
                         </div>
                     </div>
                 }
                 else
                 {
-                    <div class="speech" >
+                    <div class="speech">
                         <div class="triangle-red chat-received">
                             <p>
                                 @p.Content
                             </p>
                         </div>
 
-                        <div class="speech" >
+                        <div class="speech">
                             Af @ViewBag.PatientName @p.Posted
                         </div>
                     </div>
@@ -51,7 +52,7 @@
         </div>
         <div class="chat-send-box">
             @using (Html.BeginForm("index", "Therapist",
-               new { id = @ViewBag.PatientId }))
+              new { id = @ViewBag.PatientId }))
             {
                 <p>
                     @Html.TextBox("message")
