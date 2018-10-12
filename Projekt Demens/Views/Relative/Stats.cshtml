@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Projekt_Demens.Models.Stat>
+@{
+    Layout = "_Layout";
+}
+
+<h1>Statistik for træning</h1>
+Her kan du se statistik over @ViewBag.PatientName's træning.
+<br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate ullamcorper lacus, at iaculis neque elementum at. Duis porta arcu eget justo dictum mollis. Sed imperdiet elit ex, ac placerat mi efficitur ut. Curabitur sollicitudin suscipit sagittis. Curabitur purus mi, suscipit laoreet quam vel, lobortis pellentesque odio. Suspendisse maximus, ligula quis ullamcorper condimentum, enim orci consectetur libero, eget sodales purus lorem malesuada enim. Suspendisse molestie egestas urna ut scelerisque. Morbi eget ipsum pharetra mauris luctus venenatis. Cras ut libero in nibh cursus pellentesque. Nam maximus vestibulum augue, tincidunt porttitor est facilisis a. Duis tincidunt urna et ultrices condimentum.
+
+
+
+<div class="stats">
+    @foreach (var stat in Model)
+    {
+        @await Html.PartialAsync("_Stat", stat)
+    }
+</div>
