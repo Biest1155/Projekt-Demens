@@ -12,6 +12,6 @@ namespace Projekt_Demens.Models
         public Patient Patient { get; set; }
         public DateTime Date { get; set; }
         public string ExerciseName { get; set; }
-        public int result { get; set; }
+        public int Result { get; set; }
     }
 }
