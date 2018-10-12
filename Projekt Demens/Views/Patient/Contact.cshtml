@@ -1,0 +1,59 @@
+﻿@inject Projekt_Demens.Models.FormattingService Format
+@model List<ChatMessage>
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+    <div>
+       
+        <div class="chat-messages">
+            @foreach (var p in Model)
+            {
+                @if (p.TerapeutIsAuthor ==false)
+                {
+                    <div class="speech ">
+                        <div class="triangle-blue chat-sent">
+                            <p>
+                                @p.Content
+                            </p>
+                        </div>
+                        <div class="speech align-right">
+                            @ViewBag.PatientName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="speech">
+                        <div class="triangle-red chat-received">
+                            <p>
+                                @p.Content
+                            </p>
+                        </div>
+
+                        <div class="speech">
+                            @ViewBag.TherapistName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="chat-send-box">
+            @using (Html.BeginForm("Contact", "Patient",
+             new { id = @ViewBag.PatientId }))
+            {
+                <p>
+                    @Html.TextBox("message")
+                    <input type="submit" value="Send besked" />
+                </p>
+            }
+        </div>
+    </div>
+</body>
+</html>
