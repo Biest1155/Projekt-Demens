@@ -1,5 +1,5 @@
 ﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
-@*@inject Projekt_Demens.Models.FormattingService Format*@
+@inject Projekt_Demens.Models.FormattingService Format
 @model List<ChatMessage>
 @{
     Layout = "_Layout";
@@ -30,7 +30,7 @@
                             </p>
                         </div>
                         <div class="speech align-right">
-                             @ViewBag.TherapistName @*@Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)*@
+                             @ViewBag.TherapistName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
                         </div>
                     </div>
                 }
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="speech">
-                            Af @ViewBag.PatientName @p.Posted
+                            @ViewBag.PatientName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
                         </div>
                     </div>
                 }
