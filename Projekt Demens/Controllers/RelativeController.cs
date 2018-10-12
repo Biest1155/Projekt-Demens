@@ -34,7 +34,10 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult Stats()
         {
-            return View();
+            var patient = _db.Patients.FirstOrDefault(x => x.Name == x.Name);
+            var stats = _db.Stats.Where(x => x.PatientId == patient.Id).OrderByDescending(x => x.Date);
+            ViewBag.PatientName = patient.Name;
+            return View(stats);
         }
     }
 }

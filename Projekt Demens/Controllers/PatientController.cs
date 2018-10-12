@@ -33,7 +33,62 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult Stats()
         {
-            return View();
+            var patient = _db.Patients.FirstOrDefault(x => x.Name == x.Name);
+            var stats = _db.Stats.Where(x => x.PatientId == patient.Id).OrderByDescending(x => x.Date);
+            ViewBag.PatientName = patient.Name;
+            return View(stats);
+        }
+
+        public IActionResult StatsTestData()
+        {
+            if (_db.Stats.ToList().Count == 0)
+            {
+                var patient = new Patient
+                {
+                    CPR = "123456-2792",
+                    Name = "Ulla Sørensen"
+                };
+                _db.Patients.Add(patient);
+                _db.SaveChanges();
+                var stat = new Stat
+                {
+                    Date = new DateTime(2018,06,16),
+                    ExerciseName = "4000 - Stående udadrotation af skulder med elastik mellem begge hænder (Aktivitet)",
+                    Result = 22,
+                    Patient = patient,
+                    PatientId = patient.Id
+                };
+                _db.Stats.Add(stat);
+                stat = new Stat
+                {
+                    Date = new DateTime(2018, 06, 16),
+                    ExerciseName = "4009 - Stående skulderadduktion med elastik (Aktivitet)",
+                    Result = 22,
+                    Patient = patient,
+                    PatientId = patient.Id
+                };
+                _db.Stats.Add(stat);
+                stat = new Stat
+                {
+                    Date = new DateTime(2018, 06, 15),
+                    ExerciseName = "4000 - Stående udadrotation af skulder med elastik mellem begge hænder (Aktivitet)",
+                    Result = 22,
+                    Patient = patient,
+                    PatientId = patient.Id
+                };
+                _db.Stats.Add(stat);
+                stat = new Stat
+                {
+                    Date = new DateTime(2018, 06, 15),
+                    ExerciseName = "4009 - Stående skulderadduktion med elastik (Aktivitet)",
+                    Result = 22,
+                    Patient = patient,
+                    PatientId = patient.Id
+                };
+                _db.Stats.Add(stat);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Stats");
         }
 
         public IActionResult TipsTestData()
