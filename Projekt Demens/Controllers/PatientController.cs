@@ -26,9 +26,33 @@ namespace Projekt_Demens.Controllers
             return View(tips);
         }
 
-        public IActionResult Contact()
+        [HttpGet]
+        public IActionResult Contact(long patientId = 2)
         {
-            return View();
+         var messages=_db.Messages.Where(x => x.PatientId == patientId).ToList();
+            ViewBag.TherapistName = "Terapeutnavn";
+            ViewBag.PatientName = "PatientNavn";
+            ViewBag.PatientId = patientId;
+            return View(messages);
+        }
+
+        [HttpPost]
+        public IActionResult Contact(long id, string message)
+        {
+            ChatMessage _newMessage = new ChatMessage()
+            {
+                PatientId = id,
+                Posted = DateTime.Now,
+                Content = message,
+                TerapeutId = 1,
+                TerapeutIsAuthor = false
+
+            };
+            _db.Add(_newMessage);
+            _db.SaveChanges();
+
+
+            return RedirectToAction("Contact", "Patient", new {patient = id });
         }
 
         public IActionResult Stats()

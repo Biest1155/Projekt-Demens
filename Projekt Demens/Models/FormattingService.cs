@@ -11,28 +11,34 @@ namespace Projekt_Demens.Models
     {
         public string DateFormat(DateTime date)
         {
-            //   var cultureInfo = CultureInfo.CreateSpecificCulture("da-DK");
-            CultureInfo.CurrentCulture = CultureInfo.CreateSpecificCulture("da-DK");
-            //if (date.Date==DateTime.Today)
-            //{
-            //    return "Idag";
-            //}
-         /*  else */if ((date.Date-DateTime.Today).Days<7)
+            TimeSpan difference = DateTime.Now - date;
+
+            if (date.Date == DateTime.Today)
             {
-                return date.DayOfWeek.ToString();
+                return "Idag";
             }
+            else if (difference.Days<7)
+            {
+             return   date.ToString("dddd", new CultureInfo("da-DK"));
 
-            return date.ToString("dd MMMM yyyy");
+            }
+            else
+            {
+                return date.ToString("dd MMMM yyyy", new CultureInfo("da-DK"));
 
-
+            }
+        
+            
         }
 
         public string TimeFormat(DateTime time)
         {
+
             return time.ToString("hh.mm");
 
         }
 
+       
         
 
         

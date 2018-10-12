@@ -1,5 +1,4 @@
-﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
-@inject Projekt_Demens.Models.FormattingService Format
+﻿@inject Projekt_Demens.Models.FormattingService Format
 @model List<ChatMessage>
 @{
     Layout = "_Layout";
@@ -12,16 +11,11 @@
 
 <body>
     <div>
-        <div class="w3-bar-block w3-card chat-sidebar">
-            <h3 class="w3-bar-item"> Patienter</h3>
-            @Html.ActionLink("Torben Hansen", "Index", "Therapist", new { id = 1 }, new { @class = "w3-bar-item w3-button" })
-            @Html.ActionLink("Ulla Nielsen", "Index", "Therapist", new { id = 2 }, new { @class = "w3-bar-item w3-button" })
-            @Html.ActionLink("Sofie Andersen", "Index", "Therapist", new { id = 3 }, new { @class = "w3-bar-item w3-button" })
-        </div>
+       
         <div class="chat-messages">
             @foreach (var p in Model)
             {
-                @if (p.TerapeutIsAuthor == true)
+                @if (p.TerapeutIsAuthor ==false)
                 {
                     <div class="speech ">
                         <div class="triangle-blue chat-sent">
@@ -30,7 +24,7 @@
                             </p>
                         </div>
                         <div class="speech align-right">
-                             @ViewBag.TherapistName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
+                            @ViewBag.PatientName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
                         </div>
                     </div>
                 }
@@ -44,15 +38,15 @@
                         </div>
 
                         <div class="speech">
-                            @ViewBag.PatientName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
+                            @ViewBag.TherapistName @Format.DateFormat(p.Posted) kl. @Format.TimeFormat(p.Posted)
                         </div>
                     </div>
                 }
             }
         </div>
         <div class="chat-send-box">
-            @using (Html.BeginForm("index", "Therapist",
-              new { id = @ViewBag.PatientId }))
+            @using (Html.BeginForm("Contact", "Patient",
+             new { id = @ViewBag.PatientId }))
             {
                 <p>
                     @Html.TextBox("message")
