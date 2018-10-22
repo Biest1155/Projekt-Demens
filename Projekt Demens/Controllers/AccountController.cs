@@ -66,7 +66,7 @@ namespace Projekt_Demens.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Bruger er logget ind.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -75,12 +75,12 @@ namespace Projekt_Demens.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Brugers konto er låst ude.");
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Ugyldigt login forsøg.");
                     return View(model);
                 }
             }
@@ -98,7 +98,7 @@ namespace Projekt_Demens.Controllers
 
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"Kunne ikke indlæse to-trins godkendelse.");
             }
 
             var model = new LoginWith2faViewModel { RememberMe = rememberMe };
@@ -120,7 +120,7 @@ namespace Projekt_Demens.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Kunne ikke indlæse bruger med ID '{_userManager.GetUserId(User)}'.");
             }
 
             var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
@@ -129,18 +129,18 @@ namespace Projekt_Demens.Controllers
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                _logger.LogInformation("Bruger med ID: {UserId} logget ind med 2fa.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _logger.LogWarning("Bruger med ID: {UserId} er låst ude.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
+                _logger.LogWarning("Ugyldig godkendelseskode indtastet for bruger med ID: {UserId}.", user.Id);
+                ModelState.AddModelError(string.Empty, "Ugyldig godkendelseskode.");
                 return View();
             }
         }
@@ -153,7 +153,7 @@ namespace Projekt_Demens.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"Kunne ikke indlæse to-trins godkendelse for bruger.");
             }
 
             ViewData["ReturnUrl"] = returnUrl;
@@ -174,7 +174,7 @@ namespace Projekt_Demens.Controllers
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
+                throw new ApplicationException($"Kunne ikke indlæse to-trins godkendelse for bruger.");
             }
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
@@ -183,18 +183,18 @@ namespace Projekt_Demens.Controllers
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                _logger.LogInformation("Bruger med ID: {UserId} loggede ind med en gendannelseskode.", user.Id);
                 return RedirectToLocal(returnUrl);
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                _logger.LogWarning("Bruger med ID: {UserId} er låst ude.", user.Id);
                 return RedirectToAction(nameof(Lockout));
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                _logger.LogWarning("Ugyldig gendannelseskode indtastet for bruger med ID {UserId}", user.Id);
+                ModelState.AddModelError(string.Empty, "Ugyldig gendannelseskode indtastet.");
                 return View();
             }
         }
@@ -226,14 +226,14 @@ namespace Projekt_Demens.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Brugeren er oprettet med en ny adgangskoden for kontoen.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Bruger oprette en ny konto med adgangskode.");
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -248,7 +248,7 @@ namespace Projekt_Demens.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("Brugeren er logget ud.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -269,7 +269,7 @@ namespace Projekt_Demens.Controllers
         {
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                ErrorMessage = $"Fejl fra ekstern udbyder: {remoteError}";
                 return RedirectToAction(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -282,7 +282,7 @@ namespace Projekt_Demens.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
+                _logger.LogInformation("Bruger loggede ind med {Name} udbyder.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
             if (result.IsLockedOut)
@@ -310,7 +310,7 @@ namespace Projekt_Demens.Controllers
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    throw new ApplicationException("Error loading external login information during confirmation.");
+                    throw new ApplicationException("Fejl ved indlæsing af ekstern information under bekræftelse.");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
@@ -320,7 +320,7 @@ namespace Projekt_Demens.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation("Bruger oprettet med konto ved at brude {Name} som udbyder.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -342,10 +342,10 @@ namespace Projekt_Demens.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+                throw new ApplicationException($"Kunne ikke indlæse bruger med ID '{userId}'.");
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return View(result.Succeeded ? "ConfirmEmail" : "Fejl");
         }
 
         [HttpGet]
@@ -373,8 +373,8 @@ namespace Projekt_Demens.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                await _emailSender.SendEmailAsync(model.Email, "Nulstil adgangskode",
+                   $"Nulstil venligst din adgangskode ved at klikke her: <a href='{callbackUrl}'>link</a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
@@ -395,7 +395,7 @@ namespace Projekt_Demens.Controllers
         {
             if (code == null)
             {
-                throw new ApplicationException("A code must be supplied for password reset.");
+                throw new ApplicationException("En kode skal bruges ved nulstilling af adgangskode.");
             }
             var model = new ResetPasswordViewModel { Code = code };
             return View(model);
