@@ -10,6 +10,7 @@ namespace Projekt_Demens.Models.AccountViewModels
     {
         [Required]
         [EmailAddress]
+        [Display(Name = "E-mail brugt til oprettelse af kontoen")]
         public string Email { get; set; }
     }
 }

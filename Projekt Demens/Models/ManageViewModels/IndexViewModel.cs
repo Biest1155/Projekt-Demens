@@ -8,16 +8,18 @@ namespace Projekt_Demens.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        [Display(Name = "Brugernavn")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
 
         [Required]
         [EmailAddress]
+        [Display(Name = "E-mail adresse")]
         public string Email { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Telefonnummer")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }

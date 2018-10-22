@@ -10,9 +10,11 @@ namespace Projekt_Demens.Models.AccountViewModels
     {
         [Required]
         [EmailAddress]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Adgangskode")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

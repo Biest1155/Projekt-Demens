@@ -9,14 +9,14 @@ namespace Projekt_Demens.Models.ManageViewModels
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} skal være mindst {2} og max {1} tegn lang.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Ny adgangskode")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Bekræft ny adgangskode")]
+        [Compare("NewPassword", ErrorMessage = "Den nye adgangskode og den bekræftede adgangskode matcher ikke.")]
         public string ConfirmPassword { get; set; }
 
         public string StatusMessage { get; set; }

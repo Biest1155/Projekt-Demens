@@ -10,7 +10,7 @@ namespace Projekt_Demens.Models.AccountViewModels
     {
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Recovery Code")]
+        [Display(Name = "Gendannelseskode")]
         public string RecoveryCode { get; set; }
     }
 }
