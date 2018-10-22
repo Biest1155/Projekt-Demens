@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Projekt_Demens.Models;
 
 namespace Projekt_Demens.Controllers
 {
+    //[Authorize(Roles = "Patient")]
     public class PatientController : Controller
     {
         private readonly DataContext _db;
@@ -15,6 +17,7 @@ namespace Projekt_Demens.Controllers
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
             return View();

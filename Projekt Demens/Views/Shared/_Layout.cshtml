@@ -38,8 +38,17 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Forside</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Tips">Tips</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Kontakt">Kontakt</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="LogOut">Log ud</a></li>
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-area="" asp-controller="Admin" asp-action="Index">Admin Page</a>
+                            }
+                        }
+                    </li>
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
