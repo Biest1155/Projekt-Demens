@@ -20,6 +20,8 @@ namespace Projekt_Demens.Controllers
 
         public IActionResult Index()
         {
+            if (_db.News.Count() > 0)
+                return View(_db.News.ToArray());
             return View();
         }
 
