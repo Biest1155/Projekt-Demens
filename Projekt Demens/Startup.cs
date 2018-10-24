@@ -124,22 +124,31 @@ namespace Projekt_Demens
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-
+            string[] roleNames = { "Admin", "Therapist", "Relative", "Patient" };
             IdentityResult roleResult;
 
-            //Adding Admin Role to the database
-            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
-            if (!roleCheck)
+            //Adding roles to the database
+            foreach (var roleName in roleNames)
             {
-                //create the roles and seed them to the database
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+                //creating the roles and seeding them to the database
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
+
             //Asign Admin role to the main User here i have given my login id for Admin management
-            ApplicationUser user = await UserManager.FindByEmailAsync("christian.schou17@gmail.com");
+            ApplicationUser user1 = await UserManager.FindByEmailAsync("admin@mail.dk");
+            ApplicationUser user2 = await UserManager.FindByEmailAsync("therapist@mail.dk");
+            ApplicationUser user3 = await UserManager.FindByEmailAsync("patient@mail.dk");
+            ApplicationUser user4 = await UserManager.FindByEmailAsync("relative@mail.dk");
 
             var User = new ApplicationUser();
-            await UserManager.AddToRoleAsync(user, "Admin");
+            await UserManager.AddToRoleAsync(user1, "Admin");
+            await UserManager.AddToRoleAsync(user2, "Therapist");
+            await UserManager.AddToRoleAsync(user3, "Patient");
+            await UserManager.AddToRoleAsync(user4, "Relative");
         }
     }
 }

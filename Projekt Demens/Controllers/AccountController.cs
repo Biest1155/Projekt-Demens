@@ -229,11 +229,11 @@ namespace Projekt_Demens.Controllers
                     _logger.LogInformation("Brugeren er oprettet med en ny adgangskoden for kontoen.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("Bruger oprette en ny konto med adgangskode.");
+                    _logger.LogInformation("Bruger oprettede en ny konto med adgangskode.");
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -372,7 +372,7 @@ namespace Projekt_Demens.Controllers
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
+                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id.ToString(), code, Request.Scheme);
                 await _emailSender.SendEmailAsync(model.Email, "Nulstil adgangskode",
                    $"Nulstil venligst din adgangskode ved at klikke her: <a href='{callbackUrl}'>link</a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
