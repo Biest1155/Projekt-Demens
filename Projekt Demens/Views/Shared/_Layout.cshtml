@@ -39,25 +39,25 @@
                     {
                         <li><a asp-area="" asp-controller="Patient" asp-action="Index">Forside</a></li>
                         <li><a asp-area="" asp-controller="Patient" asp-action="Tips">Tips</a></li>
-                        <li><a asp-area="" asp-controller="Patient" asp-action="Kontakt">Kontakt</a></li>
+                        <li><a asp-area="" asp-controller="Patient" asp-action="Contact">Kontakt</a></li>
                     }
                     else if (User.IsInRole("Relative"))
                     {
                         <li><a asp-area="" asp-controller="Relative" asp-action="Index">Forside</a></li>
                         <li><a asp-area="" asp-controller="Relative" asp-action="Tips">Tips</a></li>
-                        <li><a asp-area="" asp-controller="Relative" asp-action="Kontakt">Kontakt</a></li>
+                        <li><a asp-area="" asp-controller="Relative" asp-action="Contact">Kontakt</a></li>
                     }
                     else if (User.IsInRole("Therapist"))
                     {
                         <li><a asp-area="" asp-controller="Therapist" asp-action="Index">Forside</a></li>
                         <li><a asp-area="" asp-controller="Therapist" asp-action="Tips">Tips</a></li>
-                        <li><a asp-area="" asp-controller="Therapist" asp-action="Kontakt">Kontakt</a></li>
+                        <li><a asp-area="" asp-controller="Therapist" asp-action="News">Nyheder</a></li>
                     }
                     else
                     {
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Forside</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Tips">Tips</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Kontakt">Kontakt</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a></li>
                     }
                     <li>
                         @if (User.Identity.IsAuthenticated)
