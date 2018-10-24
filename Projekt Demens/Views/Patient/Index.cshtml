@@ -1,7 +1,17 @@
-﻿
+﻿@model IEnumerable<Projekt_Demens.Models.News>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Hvordan klarer du dig?</h2>
+
+<a href="@Url.Action("Stats")">
+    <img src="~/images/Stat_placeholder.png" />
+</a>
+
+<h2>Nyheder</h2>
+@foreach (var item in Model)
+{
+    @await Html.PartialAsync("_News", item)
+}
 
