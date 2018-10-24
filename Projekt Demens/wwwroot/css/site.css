@@ -86,7 +86,7 @@ textarea {
     border-style: solid;
     width: 80%;
     margin-top: 30px;
-    height: 80px;
+    height: auto;
     padding-left: 15px;
 }
 
@@ -185,4 +185,14 @@ ul.news-list {
 
 .float {
     float:left;
+}
+
+.news-box {
+    width: 100%;
+    word-wrap:break-word;
+    padding-bottom: 15px;
+}
+
+.news-date {
+    font-size: small;
 }
