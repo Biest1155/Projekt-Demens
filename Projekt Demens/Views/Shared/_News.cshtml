@@ -1,0 +1,14 @@
+﻿@model Projekt_Demens.Models.News
+
+<div class="news-box">
+
+    <h4>
+        @Model.HeadLine
+    </h4>
+    <span class="news-date">
+        Dato: @Model.Posted.ToString("dd. MMMM yyyy")
+    </span>
+    <p>
+        @Model.Body
+    </p>
+</div>
