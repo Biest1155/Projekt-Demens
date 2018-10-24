@@ -11,6 +11,13 @@ namespace Projekt_Demens.Models.ManageViewModels
         [Display(Name = "Brugernavn")]
         public string Username { get; set; }
 
+        [Display(Name = "Fornavn")]
+        public string Firstname { get; set; }
+
+        [Display(Name = "Efternavn")]
+        public string Lastname { get; set; }
+
+
         public bool IsEmailConfirmed { get; set; }
 
         [Required]
