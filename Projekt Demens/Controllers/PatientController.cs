@@ -34,7 +34,7 @@ namespace Projekt_Demens.Controllers
         [HttpGet]
         public IActionResult Contact(long patientId = 2)
         {
-         var messages=_db.Messages.Where(x => x.PatientId == patientId).ToList();
+         var messages=_db.Messages.Where(x => x.PatientId == patientId).OrderBy(x => x.Posted).ToList();
             ViewBag.TherapistName = "Terapeutnavn";
             ViewBag.PatientName = "PatientNavn";
             ViewBag.PatientId = patientId;
